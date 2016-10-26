@@ -33,7 +33,7 @@ x <- '{
 }'
 ```
 
-the value is __positive__ if ring is oriented counterclockwise
+the value is __positive__ if ring is oriented clockwise
 
 
 ```r
