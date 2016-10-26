@@ -13,5 +13,6 @@ Imports:
     jsonlite (>= 1.1)
 Suggests:
     roxygen2 (>= 5.0.1),
-    testthat
+    testthat,
+    covr
 RoxygenNote: 5.0.1
