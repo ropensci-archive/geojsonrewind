@@ -30,7 +30,7 @@ x <- '{
    [[100.0,0.0],[100.0,1.0],[101.0,1.0],[101.0,0.0],[100.0,0.0]]
  ]
 }'
-jsonlite::toJSON(rewind(x), auto_unbox = TRUE)
-jsonlite::toJSON(rewind(x, FALSE), auto_unbox = TRUE)
+rewind(x)
+rewind(x, outer = FALSE)
 }
 
