@@ -2,7 +2,7 @@ Package: geojsonrewind
 Type: Package
 Title: Fix 'GeoJSON' Winding Direction
 Description: Fix 'GeoJSON' Winding Direction.
-Version: 0.0.1.9000
+Version: 0.0.1.9300
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus@gmail.com")
     )

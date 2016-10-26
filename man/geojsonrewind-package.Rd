@@ -5,6 +5,10 @@
 \alias{geojsonrewind}
 \alias{geojsonrewind-package}
 \title{\strong{GeoJSON Rewinding}}
+\description{
+a package for fixing ring order, see also the
+right-hand rule for geojson
+}
 \author{
 Scott Chamberlain \email{myrmecocystus@gmail.com}
 }
