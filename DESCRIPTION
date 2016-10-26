@@ -1,0 +1,17 @@
+Package: geojsonrewind
+Type: Package
+Title: Fix 'GeoJSON' Winding Direction
+Description: Fix 'GeoJSON' Winding Direction.
+Version: 0.0.1.9000
+Authors@R: c(
+    person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus@gmail.com")
+    )
+License: MIT + file LICENSE
+URL: https://github.com/ropenscilabs/geojsonrewind
+BugReports: https://github.com/ropenscilabs/geojsonrewind/issues
+Imports:
+    jsonlite (>= 1.1)
+Suggests:
+    roxygen2 (>= 5.0.1),
+    testthat
+RoxygenNote: 5.0.1
