@@ -6,6 +6,9 @@ dist: trusty
 after_success:
   - Rscript -e 'covr::codecov()'
 
+r_github_packages:
+  - jimhester/covr
+
 notifications:
   email:
     on_success: change
