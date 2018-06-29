@@ -27,9 +27,9 @@ clockwise, otherwise it will be negative.
 
 Reference:
 Robert. G. Chamberlain and William H. Duquette, "Some Algorithms for
-  Polygons on a Sphere", JPL Publication 07-03, Jet Propulsion
-  Laboratory, Pasadena, CA, June 2007
-  http://trs-new.jpl.nasa.gov/dspace/handle/2014/40409
+Polygons on a Sphere", JPL Publication 07-03, Jet Propulsion
+Laboratory, Pasadena, CA, June 2007
+http://trs-new.jpl.nasa.gov/dspace/handle/2014/40409
 }
 \examples{
 x <- '{
@@ -42,4 +42,3 @@ x <- jsonlite::fromJSON(x, FALSE)
 ring_area(x = x$coordinates[[1]])
 ring_area(x = rev(x$coordinates[[1]]))
 }
-

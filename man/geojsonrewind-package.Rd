@@ -2,14 +2,13 @@
 % Please edit documentation in R/geojsonrewind-package.R
 \docType{package}
 \name{geojsonrewind-package}
-\alias{geojsonrewind}
 \alias{geojsonrewind-package}
+\alias{geojsonrewind}
 \title{\strong{GeoJSON Rewinding}}
 \description{
 a package for fixing ring order, see also the
 right-hand rule for geojson
 }
 \author{
-Scott Chamberlain \email{myrmecocystus@gmail.com}
+Scott Chamberlain \email{sckott@protonmail.com}
 }
-

@@ -2,8 +2,8 @@
 #'
 #' @export
 #' @param x A list of coordinates. See examples for its form
-#' @details ported from \code{geojson-aera} JS library at
-#' \url{https://github.com/mapbox/geojson-area}
+#' @details ported from `geojson-aera` JS library at
+#' <https://github.com/mapbox/geojson-area>
 #'
 #' Calculate the approximate area of the polygon were it projected onto
 #' the earth.  Note that this area will be positive if ring is oriented

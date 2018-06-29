@@ -10,8 +10,8 @@ rewind(x, outer = TRUE)
 \item{x}{A geojson object, either as list, character string, or json
 class}
 
-\item{outer}{(logical) clockwise (\code{TRUE}, default) or
-counterclockwise (\code{FALSE})}
+\item{outer}{(logical) clockwise (\code{FALSE}, default) or
+counterclockwise (\code{TRUE})}
 }
 \value{
 a geojson object, as json/character class
@@ -24,6 +24,7 @@ ported from \code{geojson-rewind} JS library at
 \url{https://github.com/mapbox/geojson-rewind}
 }
 \examples{
+# character strings
 x <- '{
  "type":"Polygon",
  "coordinates":[
@@ -32,5 +33,11 @@ x <- '{
 }'
 rewind(x)
 rewind(x, outer = FALSE)
-}
 
+# json
+library(jsonlite)
+rewind(toJSON(fromJSON(x), auto_unbox = TRUE))
+
+# list
+rewind(fromJSON(x, FALSE))
+}

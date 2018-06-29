@@ -3,12 +3,13 @@
 #' @export
 #' @param x A geojson object, either as list, character string, or json
 #' class
-#' @param outer (logical) clockwise (\code{TRUE}, default) or
-#' counterclockwise (\code{FALSE})
-#' @details ported from \code{geojson-rewind} JS library at
-#' \url{https://github.com/mapbox/geojson-rewind}
+#' @param outer (logical) clockwise (`FALSE`, default) or
+#' counterclockwise (`TRUE`)
+#' @details ported from `geojson-rewind` JS library at
+#' <https://github.com/mapbox/geojson-rewind>
 #' @return a geojson object, as json/character class
 #' @examples
+#' # character strings
 #' x <- '{
 #'  "type":"Polygon",
 #'  "coordinates":[
@@ -17,6 +18,14 @@
 #' }'
 #' rewind(x)
 #' rewind(x, outer = FALSE)
+#'
+#' # json
+#' library(jsonlite)
+#' rewind(toJSON(fromJSON(x), auto_unbox = TRUE))
+#'
+#' # list
+#' rewind(fromJSON(x, FALSE))
+
 rewind <- function(x, outer = TRUE) {
   UseMethod("rewind")
 }
@@ -29,7 +38,7 @@ rewind.default <- function(x, outer = TRUE) {
 #' @export
 rewind.character <- function(x, outer = TRUE) {
   x <- jsonlite::fromJSON(x, FALSE)
-  rewind_(x, outer)
+  unclass(toj_unbox(rewind_(x, outer)))
 }
 
 #' @export
@@ -39,37 +48,40 @@ rewind.list <- function(x, outer = TRUE) {
 
 #' @export
 rewind.json <- function(x, outer = TRUE) {
-  rewind(unclass(x), outer)
+  toj_unbox(rewind(jsonlite::fromJSON(x, FALSE), outer))
 }
 
+toj_unbox <- function(x) jsonlite::toJSON(x, auto_unbox = TRUE)
+
 rewind_ <- function(x, outer) {
-  jsonlite::toJSON(switch(
+  switch(
     x$type,
     FeatureCollection = {
-      x$features <- x$features.map(curry_outer(rewind, outer))
-      return(x)
+      #x$features <- x$features.map(curry_outer(rewind, outer))
+      x$features <- lapply(x$features, function(z) rewind(z, outer))
+      x
     },
     Feature = {
       x$geometry <- rewind(x$geometry, outer)
-      return(x)
+      x
     },
     Polygon = correct(x, outer),
     MultiPolygon = correct(x, outer),
-    return(x)
-  ), auto_unbox = TRUE)
+    x
+  )
 }
 
-curry_outer <- function(a, b) {
-  function(x) {
-    eval(a)(x, b)
-  }
+curry_outer <- function(fun, a, b) {
+  #function(x) {
+  eval(fun)(a, b)
+  #}
 }
 
 correct <- function(x, outer) {
   if (x$type == "Polygon") {
     x$coordinates <- correct_rings(x$coordinates, outer)
   } else if (x$type == "MultiPolygon") {
-    x$coordinates <- Map(function(z) curry_outer(correct_rings, outer), x$coordinates)
+    x$coordinates <- Map(function(z) curry_outer(correct_rings, z, outer), x$coordinates)
   }
   return(x)
 }
