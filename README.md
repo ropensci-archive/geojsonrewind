@@ -52,7 +52,7 @@ ring_area(x = rev(x$coordinates[[1]]))
 
 ## rewind
 
-when `outer = TRUE`, clockwise
+when `outer = TRUE`, counterclockwise
 
 
 ```r
@@ -60,7 +60,7 @@ rewind(x)
 #> {"type":"Polygon","coordinates":[[[100,0],[101,0],[101,1],[100,1],[100,0]]]}
 ```
 
-when `outer = FALSE`, counterclockwise
+when `outer = FALSE`, clockwise
 
 
 ```r
