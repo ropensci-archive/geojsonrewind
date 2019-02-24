@@ -3,8 +3,8 @@
 #' @export
 #' @param x A geojson object, either as list, character string, or json
 #' class
-#' @param outer (logical) clockwise (`FALSE`, default) or
-#' counterclockwise (`TRUE`)
+#' @param outer (logical) counterclockwise (`TRUE`, default) or
+#' clockwise (`FALSE`)
 #' @details ported from `geojson-rewind` JS library at
 #' <https://github.com/mapbox/geojson-rewind>
 #' @return a geojson object, as json/character class
@@ -57,7 +57,6 @@ rewind_ <- function(x, outer) {
   switch(
     x$type,
     FeatureCollection = {
-      #x$features <- x$features.map(curry_outer(rewind, outer))
       x$features <- lapply(x$features, function(z) rewind(z, outer))
       x
     },
@@ -81,7 +80,8 @@ correct <- function(x, outer) {
   if (x$type == "Polygon") {
     x$coordinates <- correct_rings(x$coordinates, outer)
   } else if (x$type == "MultiPolygon") {
-    x$coordinates <- Map(function(z) curry_outer(correct_rings, z, outer), x$coordinates)
+    x$coordinates <- Map(function(z)
+      curry_outer(correct_rings, z, outer), x$coordinates)
   }
   return(x)
 }

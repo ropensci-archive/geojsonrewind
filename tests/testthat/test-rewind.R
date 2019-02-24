@@ -56,8 +56,9 @@ test_that("rewind - checks - with lists", {
 })
 
 test_that("rewind - checks - with json", {
-  f <- system.file("tests/testthat/featuregood.input.geojson", package = "geojsonrewind")
-  aa <- rewind(toJSON(fromJSON(f, FALSE), auto_unbox = TRUE))
+  f <- system.file("tests/testthat/featuregood.input.geojson",
+    package = "geojsonrewind")
+  aa <- rewind(toJSON(fromJSON(f, FALSE), auto_unbox = TRUE), FALSE)
 
   out <- toJSON(fromJSON(system.file("tests/testthat/featuregood.output.geojson", package = "geojsonrewind"), FALSE), auto_unbox = TRUE)
   expect_identical(

@@ -10,8 +10,8 @@ rewind(x, outer = TRUE)
 \item{x}{A geojson object, either as list, character string, or json
 class}
 
-\item{outer}{(logical) clockwise (\code{FALSE}, default) or
-counterclockwise (\code{TRUE})}
+\item{outer}{(logical) counterclockwise (\code{TRUE}, default) or
+clockwise (\code{FALSE})}
 }
 \value{
 a geojson object, as json/character class
